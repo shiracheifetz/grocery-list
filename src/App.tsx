@@ -1,30 +1,31 @@
 import { useState } from 'react'
 import './App.css'
+import Header from './Header';
 import GroceryList from './GroceryList';
 import AddItem from "./AddItem";
 
+export type GroceryItem = {
+  name: string;
+  isBought: boolean;
+}
+
 function App() {
-  const [items, setItems] = useState<string[]>(() => {
-    const stored = localStorage.getItem('groceryListItems');
+  const [items, setItems] = useState<GroceryItem[]>(() => {
+    const stored = localStorage.getItem('groceryItems');
     return stored ? JSON.parse(stored) : [];
   })
 
   const addItem = (newItem: string) => {
-    const updated = [...items, newItem];
+    const updated = [...items, {name: newItem, isBought: false}];
     setItems(updated);
-    localStorage.setItem('groceryListItems', JSON.stringify(updated));
+    localStorage.setItem('groceryItems', JSON.stringify(updated));
   }
 
   return (
     <>
-      <header className="website-header">
-        <h1>My Grocery List</h1>
-        <p>My Grocery List can be used to add grocery items, mark them as bought, 
-          and remove them from the list.</p>
-      </header>
+      <Header/>
       <AddItem onAddItem={addItem}/>
       <GroceryList items={items} setItems={setItems} />
-      
     </>
   )
 }
@@ -32,12 +33,5 @@ function App() {
 export default App
 
 
-//function UserGreeting() {
-//   return isLoggedIn ? <h1>Welcome back, user!</h1> : <h1>Please log in</h1>;
-// }
-
-// If the list is empty, display a message (e.g., “No items added yet”) 
-
-
-//let items = localStorage.getItem('groceryListItems');
-//JSON.stringify(items);
+//use conditional rendering to mark as bought.
+//toggle between a checked or unchecked box or image. 

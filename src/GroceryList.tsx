@@ -1,26 +1,34 @@
 //import { useState } from 'react';
-import GroceryListItem from "./GroceryListItem";
+import GroceryItemComponent from "./GroceryItemComponent.tsx";
+import styles from './GroceryList.module.css'
+import type { GroceryItem } from './App';
 
 type GroceryListProps = {
-    items: string[];
-    setItems: React.Dispatch<React.SetStateAction<string[]>>;
+    items: GroceryItem[];
+    setItems: React.Dispatch<React.SetStateAction<GroceryItem[]>>;
 }
 
 function GroceryList(props: GroceryListProps) {
-
     return(
-        <ul>
-            {props.items.map((item, index) => (
-                <GroceryListItem 
-                key={index} 
-                item={item}
-                onDelete={() => {
-                    const updated = props.items.filter((item, i) => i != index);
-                    props.setItems(updated);
-                    localStorage.setItem('groceryListItems', JSON.stringify(updated));
-                }}/>
-            ))}
-        </ul>
+        <div className={styles.container}>
+            {/* conditional rendering */}
+            {props.items.length === 0 ? (
+                <p>No items added yet</p>
+            ) : (
+                <ul>
+                    {props.items.map((item, index) => (
+                        <GroceryItemComponent 
+                        key={index} 
+                        item={item}
+                        onDelete={() => {
+                            const updated = props.items.filter((_, i) => i != index);
+                            props.setItems(updated);
+                            localStorage.setItem('groceryItems', JSON.stringify(updated));
+                        }}/>
+                    ))}
+                </ul>
+            )}
+        </div>
     )
 }
 

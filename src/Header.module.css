@@ -1,0 +1,17 @@
+.websiteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.websiteHeader h1{
+    font-size: 55px;
+    color: #192b6b;
+    text-shadow: 1px 1px 1px #333131;
+}
+
+.websiteHeader img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}

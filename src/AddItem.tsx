@@ -19,7 +19,7 @@ function AddItem(props: AddItemProps) {
             <input 
                 value={item}
                 onChange={(e) => setItem(e.target.value)}
-                placeholder="Add Item"
+                placeholder="Enter new item"
             />
             <button type='submit'>Add Item</button>
         </form>
