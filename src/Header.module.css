@@ -1,9 +1,3 @@
-.websiteHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .websiteHeader h1{
     font-size: 55px;
     color: #192b6b;
@@ -14,4 +8,15 @@
     width: 50px;
     height: auto;
     margin-right: 10px;
+}
+
+.websiteHeader p {
+    font-size: 18px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
 }

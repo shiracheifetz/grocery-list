@@ -21,17 +21,25 @@ function App() {
     localStorage.setItem('groceryItems', JSON.stringify(updated));
   }
 
+  const toggleBought = (index: number) => {
+    const updated: GroceryItem[] = items.map((item: GroceryItem, i: number) => {
+    if (i === index) {
+      return { ...item, isBought: !item.isBought };
+    }
+    return item;
+  });
+    setItems(updated);
+    localStorage.setItem('groceryItems', JSON.stringify(updated));
+  }
+
   return (
     <>
       <Header/>
       <AddItem onAddItem={addItem}/>
-      <GroceryList items={items} setItems={setItems} />
+      <GroceryList items={items} setItems={setItems} onToggle={toggleBought} />
     </>
   )
 }
 
+
 export default App
-
-
-//use conditional rendering to mark as bought.
-//toggle between a checked or unchecked box or image. 
