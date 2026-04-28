@@ -18,7 +18,7 @@ function GroceryList(props: GroceryListProps) {
                 <NoItemDisplay/>
             ) : (
                 <ul>
-                    {props.items.map((item, index) => (
+                    {props.items.map((item: GroceryItem, index: number) => (
                         <GroceryItemComponent 
                         key={index} 
                         item={item}

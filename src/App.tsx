@@ -11,12 +11,12 @@ export type GroceryItem = {
 
 function App() {
   const [items, setItems] = useState<GroceryItem[]>(() => {
-    const stored = localStorage.getItem('groceryItems');
+    const stored: string | null = localStorage.getItem('groceryItems');
     return stored ? JSON.parse(stored) : [];
   })
 
   const addItem = (newItem: string) => {
-    const updated = [...items, {name: newItem, isBought: false}];
+    const updated: GroceryItem[] = [...items, {name: newItem, isBought: false}];
     setItems(updated);
     localStorage.setItem('groceryItems', JSON.stringify(updated));
   }
